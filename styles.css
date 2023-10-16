@@ -27,6 +27,38 @@ body {
 }
 
 .table-row {
-  background: rgb(4, 94, 196);
-  color: #f4f4f4;
+  color: #8b8b8b;
+  font-size: 14px;
+}
+
+.table-inventory {
+  color: rgb(48, 48, 48);
+}
+
+th,
+td {
+  padding: 8px;
+}
+
+tr:nth-child(odd) {
+  background-color: #eeeeee;
+}
+
+.icon {
+  color: rgb(172, 172, 172);
+  cursor: pointer;
+}
+li {
+  list-style: none;
+}
+
+.inventory-name,
+.inventory-document,
+.inventory-price,
+.inventory-due-date {
+  width: 70%;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px;
+  border: 1px solid #cccccc;
 }
