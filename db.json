@@ -1,0 +1,52 @@
+{
+  "inventory": [
+    {
+      "id": 1,
+      "sentDate": "10/10/23",
+      "document": "001001",
+      "product": "Laptop",
+      "price": "$2000",
+      "status": "Delivered"
+    },
+    {
+      "id": 2,
+      "sentDate": "12/10/23",
+      "document": "001002",
+      "product": "Phone",
+      "price": "$1500",
+      "status": "Pending"
+    },
+    {
+      "id": 3,
+      "sentDate": "15/10/23",
+      "document": "001003",
+      "product": "Mouse",
+      "price": "$200",
+      "status": "Overdue"
+    },
+    {
+      "id": 4,
+      "sentDate": "18/10/23",
+      "document": "001004",
+      "product": "AppleTv",
+      "price": "$1200",
+      "status": "Delivered"
+    },
+    {
+      "id": 5,
+      "sentDate": "22/10/23",
+      "document": "001005",
+      "product": "Desk",
+      "price": "$300",
+      "status": "Pending"
+    },
+    {
+      "id": 6,
+      "sentDate": "25/10/23",
+      "document": "001006",
+      "product": "Chair",
+      "price": "$400",
+      "status": "Overdue"
+    }
+  ]
+}

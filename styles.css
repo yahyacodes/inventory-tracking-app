@@ -1,0 +1,32 @@
+@import url("https://fonts.googleapis.com/css2?family=AR+One+Sans:wght@500&family=Montserrat:wght@500&family=Sofia+Sans+Condensed&display=swap");
+
+​​​​​​* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+}
+
+.container {
+  margin: auto;
+  width: 50%;
+  padding: 10px 10px;
+  border-radius: 10px;
+  box-shadow: 5px 5px 15px #cccccc, -5px -5px 15px #f4f4f4;
+  margin-bottom: 20px;
+}
+
+.content-table {
+  width: 100%;
+  text-align: left;
+  padding: 5px;
+  border-collapse: collapse;
+}
+
+.table-row {
+  background: rgb(4, 94, 196);
+  color: #f4f4f4;
+}
