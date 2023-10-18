@@ -21,6 +21,7 @@ body {
 
 .content-table {
   width: 100%;
+  margin-top: 20px;
   text-align: left;
   padding: 5px;
   border-collapse: collapse;
@@ -54,11 +55,30 @@ li {
 
 .inventory-name,
 .inventory-document,
-.inventory-price,
-.inventory-due-date {
+.inventory-price {
   width: 70%;
   border-radius: 5px;
   padding: 10px;
   margin: 10px;
   border: 1px solid #cccccc;
+}
+
+.inventory-status {
+  width: 73%;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px;
+  border: 1px solid #cccccc;
+}
+
+.add-new,
+.add-inventory-btn {
+  width: 28%;
+  height: 30px;
+  border-radius: 5px;
+  background: #eeeeee;
+  color: rgb(48, 48, 48);
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
 }
