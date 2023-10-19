@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {});
 
 // Render Inventory items to DOM
 const tableContent = document.querySelector(".content-table");
+const updateInvenTable = document.querySelector(".update-inventory");
 const fetchFunction = () => {
   fetch("http://localhost:3000/inventory")
     .then((res) => res.json())
@@ -20,13 +21,106 @@ const fetchFunction = () => {
         `;
         tableContent.appendChild(rows);
 
+        // Adding event listener to update button
         rows.addEventListener("click", () => {
-          console.log("icons clicked");
+          tableContent.style.display = "none";
+          updateInven(inventory);
         });
       })
     );
 };
 fetchFunction();
+
+// Updata Functionalicty
+const updateInven = (inventory) => {
+  const newTable = document.createElement("li");
+  newTable.className = "card-update";
+  newTable.innerHTML = `
+  <input class='update-inventory-name' type='text' placeholder='Update inventory name' value='${inventory.product}'/>
+  <input class='update-inventory-price' type='number' placeholder='Update inventory price' value='${inventory.price}'/>
+  <select name="Update inventory Status" class="update-inventory-status">
+  <option value="Delivered" class='delivery'>Delivered</option>
+  <option value="Pending" class='pending'>Pending</option>
+</select>
+  <br/>
+  <button class='update-inventory-btn'>Update</button>
+  <button class='delete-inventory-btn'>Delete</button>
+  <button class='go-back'>Go back</button>
+  `;
+  updateInvenTable.appendChild(newTable);
+
+  // Adding event listener to delete button
+  const deleteButton = document.querySelector(".delete-inventory-btn");
+  deleteButton.addEventListener("click", () => {
+    newTable.remove();
+    location.reload();
+    deleteInventory(inventory.id);
+  });
+
+  // Adding event listener to go-back button
+  const goBack = document.querySelector(".go-back");
+  goBack.addEventListener("click", () => {
+    location.reload();
+  });
+
+  // Adding event listener to update button
+  const updateInvenBtn = document.querySelector(".update-inventory-btn");
+  updateInvenBtn.addEventListener("click", () => {
+    const updateInvenName = document.querySelector(
+      ".update-inventory-name"
+    ).value;
+    const updateInvenPrice = document.querySelector(
+      ".update-inventory-price"
+    ).value;
+    const updateInvenDoc = inventory.document;
+    const updateInvenStatus = document.querySelector(
+      ".update-inventory-status"
+    ).value;
+
+    // Updating send date dynamically in update
+    let updateDate = new Date();
+    const updateYear = updateDate.getFullYear();
+    const updateMonth = updateDate.getMonth() + 1;
+    const updateDay = updateDate.getDate();
+
+    const updateNewDate = `${updateMonth
+      .toString()
+      .padStart(2, "0")}/${updateDay
+      .toString()
+      .padStart(2, "0")}/${updateYear}`;
+
+    // Updating + two days ahead due date dynamically in update
+    let updateDeliveryDate = new Date();
+    const updateFutureDate = new Date(updateDeliveryDate);
+    updateFutureDate.setDate(updateDeliveryDate.getDate() + 2);
+
+    const updateDeliveryYear = updateFutureDate.getFullYear();
+    const updateDeliveryMonth = updateFutureDate.getMonth() + 1;
+    const updateDeliveryDay = updateFutureDate.getDate();
+
+    const updateDeliveryNewDate = `${updateDeliveryMonth
+      .toString()
+      .padStart(2, "0")}/${updateDeliveryDay
+      .toString()
+      .padStart(2, "0")}/${updateDeliveryYear}`;
+
+    // Updating new updated data on json
+    let updateData = {
+      sentDate: updateNewDate,
+      document: updateInvenDoc,
+      product: updateInvenName,
+      price: updateInvenPrice,
+      status: updateInvenStatus,
+      dueDate: updateDeliveryNewDate,
+      id: inventory.id,
+    };
+
+    // Sending the updated data to json
+    updateInventory(updateData);
+    console.log(inventory);
+    location.reload();
+  });
+};
 
 // Add new inventory button functionality
 const btnAdd = document.querySelector(".add-new");
@@ -46,8 +140,15 @@ btnAdd.addEventListener("click", () => {
 </select>
   <br/>
   <button class='add-inventory-btn'>Add</button>
+  <button class='go-back'>Go back</button>
   `;
   addInventory.appendChild(card);
+
+  // Adding event listener to go-back button
+  const goBack = document.querySelector(".go-back");
+  goBack.addEventListener("click", () => {
+    location.reload();
+  });
 
   // Adding event listener to add inventory button
   const addInevenBtn = document.querySelector(".add-inventory-btn");
@@ -112,4 +213,29 @@ const addnewInventory = (newData) => {
   })
     .then((res) => res.json())
     .then((data) => console.log(data));
+};
+
+// UPdating data in json
+const updateInventory = (inventory) => {
+  fetch(`http://localhost:3000/inventory/${inventory.id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(inventory),
+  })
+    .then((res) => res.json())
+    .then((data) => console.log(data));
+};
+
+// Delete inventory from json
+const deleteInventory = (id) => {
+  fetch(`http://localhost:3000/inventory/${id}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((res) => res.json())
+    .then((data) => data);
 };

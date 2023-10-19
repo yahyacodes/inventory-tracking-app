@@ -55,7 +55,9 @@ li {
 
 .inventory-name,
 .inventory-document,
-.inventory-price {
+.inventory-price,
+.update-inventory-name,
+.update-inventory-price {
   width: 70%;
   border-radius: 5px;
   padding: 10px;
@@ -63,7 +65,8 @@ li {
   border: 1px solid #cccccc;
 }
 
-.inventory-status {
+.inventory-status,
+.update-inventory-status {
   width: 73%;
   border-radius: 5px;
   padding: 10px;
@@ -72,7 +75,8 @@ li {
 }
 
 .add-new,
-.add-inventory-btn {
+.add-inventory-btn,
+.update-inventory-btn {
   width: 28%;
   height: 30px;
   border-radius: 5px;
@@ -81,4 +85,32 @@ li {
   font-weight: bold;
   border: none;
   cursor: pointer;
+}
+
+.go-back {
+  width: 18%;
+  height: 30px;
+  border-radius: 5px;
+  background: rgb(109, 175, 236);
+  color: #f4f4f4;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+}
+
+.delete-inventory-btn {
+  width: 18%;
+  height: 30px;
+  border-radius: 5px;
+  background: rgb(233, 116, 116);
+  color: #f4f4f4;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1200px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
 }
